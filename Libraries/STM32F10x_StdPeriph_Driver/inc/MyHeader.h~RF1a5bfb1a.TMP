@@ -1,0 +1,556 @@
+/**
+  ******************************************************************************
+  * @file    MyHeader.h
+  * @author  Andy
+  * @version V1.0
+  * @date    6-11-2015
+  * @brief   Myself header file
+  ******************************************************************************/
+
+
+#ifndef  _MyHeader_
+#define  _MyHeader_
+
+/******************************头文件包含*********************************/
+
+#include "stm32f10x.h"       //包含stm32自带头文件
+#include "STM32F10x_GPIO.h"  //包含stm32 IO口头文件
+#include "STM32F10x_TIM.h"   //stm32定时器头文件
+#include "STM32F10x_USART.h"
+#include "misc.h"            //stm32中断控制头文件
+#include "stdio.h"
+#include "stm32f10x_fsmc.h"
+#include "stm32f10x_iwdg.h"   //Watch dog
+#include "stm32f10x_flash.h"  //Flash
+#include "core_cm3.h"
+#include "MainTask.h"
+#include "string.h"
+
+
+
+/***********数据类型说明**********/
+typedef  unsigned char  byte;
+typedef  unsigned short halfword;
+typedef  unsigned int   word; 
+typedef  float 					fp32;
+
+
+
+/******************Flash相关定义***********************/
+
+#define 	IDStartADD   		0x0807f000						//Senser ID Start ADD
+#define	 	W00ADD    		  IDStartADD						//Left Front Wheel
+#define 	W01ADD    		  (IDStartADD+4)
+#define 	W10ADD			    (IDStartADD+8)
+#define 	W11ADD			    (IDStartADD+12)
+#define 	W12ADD			    (IDStartADD+16)
+#define 	W13ADD			    (IDStartADD+20)				//Right Rear Out Wheel
+
+/*********ID和设置参数放于不同的Flash页********/
+
+#define  	SetStartADD     (0x0807f800)        	//设置Flash起始地址
+#define  	PressUnitADD	  (SetStartADD)			  	//0: Bar  1: Kpa  2:Psi
+#define  TempUnitADD		  (SetStartADD+4)       //0：摄氏度  1:华氏度      
+#define  TempSetADD			  (SetStartADD+8)			  //报警阀值设置--->摄氏度
+#define  FPressSetADD		  (SetStartADD+12)      //前轮标准气压设置-->Bar
+#define  RPressSetADD		  (SetStartADD+16)			//后轮标准气压设置-->Bar
+#define  ProductParamADD 	(SetStartADD+20)			//产品状态
+
+
+/************************************************
+
+               ****					****
+               *00*---------*01*
+               ****		 |		****
+											 |
+											 |
+											 |
+											 |
+ 											 |
+											 |
+ 											 |
+				****   ****		 |    ****   ****
+				*10*---*11*	-- | ---*12*---*13*
+				****   ****         ****   ****
+
+						//轮胎标识示意图//
+***************************************************/
+
+
+
+/*******stm32位带操作定义******/
+
+#define BITBAND(addr, bitnum) ((addr & 0xF0000000)+0x2000000+((addr &0xFFFFF)<<5)+(bitnum<<2)) 
+#define MEM_ADDR(addr)  *((volatile unsigned long  *)(addr)) 
+#define BIT_ADDR(addr, bitnum)   MEM_ADDR(BITBAND(addr, bitnum)) 
+//IO口地址映射
+#define GPIOA_ODR_Addr    (GPIOA_BASE+12) //0x4001080C 
+#define GPIOB_ODR_Addr    (GPIOB_BASE+12) //0x40010C0C 
+#define GPIOC_ODR_Addr    (GPIOC_BASE+12) //0x4001100C 
+#define GPIOD_ODR_Addr    (GPIOD_BASE+12) //0x4001140C 
+#define GPIOE_ODR_Addr    (GPIOE_BASE+12) //0x4001180C 
+#define GPIOF_ODR_Addr    (GPIOF_BASE+12) //0x40011A0C    
+#define GPIOG_ODR_Addr    (GPIOG_BASE+12) //0x40011E0C    
+
+#define GPIOA_IDR_Addr    (GPIOA_BASE+8) //0x40010808 
+#define GPIOB_IDR_Addr    (GPIOB_BASE+8) //0x40010C08 
+#define GPIOC_IDR_Addr    (GPIOC_BASE+8) //0x40011008 
+#define GPIOD_IDR_Addr    (GPIOD_BASE+8) //0x40011408 
+#define GPIOE_IDR_Addr    (GPIOE_BASE+8) //0x40011808 
+#define GPIOF_IDR_Addr    (GPIOF_BASE+8) //0x40011A08 
+#define GPIOG_IDR_Addr    (GPIOG_BASE+8) //0x40011E08 
+ 
+//IO口操作,只对单一的IO口!
+//确保n的值小于16!
+#define PAout(n)   BIT_ADDR(GPIOA_ODR_Addr,n)  //输出 
+#define PAin(n)    BIT_ADDR(GPIOA_IDR_Addr,n)  //输入 
+
+#define PBout(n)   BIT_ADDR(GPIOB_ODR_Addr,n)  //输出 
+#define PBin(n)    BIT_ADDR(GPIOB_IDR_Addr,n)  //输入 
+
+#define PCout(n)   BIT_ADDR(GPIOC_ODR_Addr,n)  //输出 
+#define PCin(n)    BIT_ADDR(GPIOC_IDR_Addr,n)  //输入 
+
+#define PDout(n)   BIT_ADDR(GPIOD_ODR_Addr,n)  //输出 
+#define PDin(n)    BIT_ADDR(GPIOD_IDR_Addr,n)  //输入 
+
+#define PEout(n)   BIT_ADDR(GPIOE_ODR_Addr,n)  //输出 
+#define PEin(n)    BIT_ADDR(GPIOE_IDR_Addr,n)  //输入
+
+#define PFout(n)   BIT_ADDR(GPIOF_ODR_Addr,n)  //输出 
+#define PFin(n)    BIT_ADDR(GPIOF_IDR_Addr,n)  //输入
+
+#define PGout(n)   BIT_ADDR(GPIOG_ODR_Addr,n)  //输出 
+#define PGin(n)    BIT_ADDR(GPIOG_IDR_Addr,n)  //输入
+
+
+
+/***************端口宏定义*****************/
+
+#define  LED_B       PBout(8)
+#define  LED_G       PBout(7)
+#define  LED_R       PBout(6)				//B、G、R LED
+
+#define  KEY1        PAin(0)
+#define  KEY2        PAin(4)
+#define  KEY3        PAin(1)
+//#define  KeySignal   (byte)((1<<7)|(1<<6)|(1<<5)|(1<<4)|(1<<3)|(KEY1<<2)|(KEY2<<1)|(KEY3<<0))   
+											//Key Signal Input:1-1-1-1-1-KEY1-KEY2-KEY3
+
+#define  SFlash_CS   PBout(2)
+
+#define  RF_AMFM     PBout(15)
+#define  RF_EN       PBout(14)
+
+#define  SI4432_EN   PBout(12)
+#define  SI4432_SDN  PBout(1)
+
+#define  IO_S0       PCout(12)
+#define  IO_S1       PCout(11)
+#define  IO_S2       PCout(10)
+
+#define  CAN_S       PAout(8)
+
+#define  ALARM       PBout(9)
+#define  Buzze       PBout(5)
+
+#define DQR PAin(1)		
+#define DQW PAout(1)
+#define MAXNUM 8        //定义温度传感器的数量(<=10)
+
+
+/*****************************************************************************
+******************************LCD相关定义**************************************
+*******************************************************************************/
+
+#define White          0xFFFF
+#define Black          0x0000
+#define Red            0xF800
+#define Yellow         0xFFE0
+#define Blue           0x001F
+#define Magenta        0xF81F		//紫色
+#define Green          0x07E0
+#define Green1         0x7FFF		//浅绿
+#define Blue2          0x051F		//浅蓝
+#define NormalFrameColor   0x00FFFFFF   //正常模式边框颜色
+#define SetModeFrameColor  0x00854B1A   //设置模式边框颜色
+#define LearnSelectColor   0x00008000   //学习时选中的边框颜色
+#define Bgcolor            0x00191919   //0x00800000    //背景颜色
+#define ClearBgcolor       0x18c3       //0x0010        //清屏背景色
+#define AxleColor          0x00FFFFFF		//0x00808080   //车轴颜色
+
+
+
+#define 	LCD_CS_SET  GPIOB->BSRR=1<<11    //片选端口  	    PB11
+#define	  LCD_RS_SET	GPIOB->BSRR=1<<10    //数据/命令      	PB10	   
+#define	  LCD_WR_SET	GPIOD->BSRR=1<<2     //写数据			    PD2
+#define 	LCD_RD_SET	GPIOA->BSRR=1<<15    //读数据			    PA15
+#define		Set_Rst     GPIOB->BSRR=1<<3
+						
+#define 	LCD_CS_CLR  GPIOB->BRR=1<<11  	 //片选端口  	    PB11
+#define	  LCD_RS_CLR	GPIOB->BRR=1<<10  	 //数据/命令      	PB10   
+#define 	LCD_WR_CLR	GPIOD->BRR=1<<2      //写数据			    PD2
+#define	  LCD_RD_CLR	GPIOA->BRR=1<<15     //读数据			    PA15
+#define  	Clr_Rst     GPIOB->BRR=1<<3				
+
+#define   Lcd_Light_ON   GPIOB->BSRR=1<<4		 //LCD背光开
+#define   Lcd_Light_OFF  GPIOB->BRR=1<<4		 //LCD关背光
+
+//PC0~7,作为数据线
+//在这里，因为操作频繁，为了提高速度，直接用寄存器操作。
+
+#define DATAOUT(x) GPIOC->ODR=x//GPIOC->ODR&0XFF00|x			//端口的低8位有效
+#define DATAIN(x)  GPIOC->IDR=(byte)GPIOC->IDR		
+
+
+#define LCD_WR_DATA(data){\
+LCD_RS_SET;\
+LCD_CS_CLR;\
+DATAOUT(data);\
+LCD_WR_CLR;\
+LCD_WR_SET;\
+LCD_CS_SET;\
+}
+
+
+/**************enum常量**************/
+
+enum {DisplayOFF=12,DisplayON=24};
+enum {Bar=0,Kpa,Psi};
+enum {KeyUp=1,KeyDown,KeyOK};
+
+
+
+/**********变量申明*******/
+
+extern word a,b;
+extern halfword CAN_Temperature;
+
+
+/************数组************/
+extern byte CAN_Press[6];
+extern byte CAN_Temp1[6];
+extern byte CAN_Temp2[6];
+extern byte WheelStatus[6];  //0x01
+extern byte PressStatus[6];
+
+extern byte UART_RX[11];
+extern word UsartID[6];
+
+extern byte TempBuffer[6];
+extern byte PressBuffer[6];   //学习模式轮胎数据缓冲区
+
+extern word Parameter[6];		 	 //Default Parameter
+extern word SenserID[6];     	 //Senser ID Buffer
+
+extern byte Rev_flag;
+extern byte Rev_buff[10];
+extern const unsigned char CRCR8_Table[256];  //CRC Check TAB
+extern unsigned char const crc_tab[256];
+
+extern short temparray[10];
+extern unsigned char DS18B20ID[10][8];
+
+
+/***********结构体类定义*********/
+
+typedef struct
+{
+	word  MS_Count;
+  byte  KeyDelay;    	  
+	word  SetModeCount;
+	byte  UsartRxCount;
+  byte  CAN_TX;
+	byte  UsartWriteOK;
+	byte  Key1LPCount;
+	byte  Key2LPCount;
+	byte  Key3SPCount;
+	byte  Key3LPCount;
+	byte  DisBeatCount;
+	byte  BuzzCount;
+}Timer;
+extern Timer Times;
+
+
+/*************传感器数据包****************/
+
+typedef struct
+{ 
+  word  	 ID;    	  		//传感器ID
+  byte     Pressure;    	//传感器压力数据
+	byte     Temp;					//传感器温度数据
+  byte     Status;				//传感器状态
+	byte     Checksum;			//CRC校验段
+}Mcode;
+extern Mcode SenserStru;
+
+
+/**************CAN数据包*************/
+typedef struct
+{
+	byte location;
+	byte pressure;
+	byte temperature1;
+	byte temperature2;
+	byte status;
+	byte reserved1;
+	byte reserved2;
+	byte pressstatus;
+}CAN;
+extern CAN CANData;
+
+
+/*************多态标志****************/
+typedef struct
+{ 
+  byte  	 Wheel00Wait;    	  	
+	byte     Wheel01Wait;
+	byte     Wheel10Wait;
+	byte     Wheel11Wait;
+	byte     Wheel12Wait;
+	byte     Wheel13Wait;					//Wheel wait time
+	byte     KeySelect;						//菜单位置		
+	//byte     WarningWheel;        //显示报警的轮胎
+}MFlag;
+extern MFlag MFlags;
+
+
+/***********开关量标志定义***********/
+
+typedef union
+ {
+  halfword TheFlag;
+  struct
+  {
+   halfword Flag1        :      1;               
+   halfword Flag2        :      1;
+   halfword Flag3        :      1;
+   halfword Flag4        :      1; 
+   halfword Flag5        :      1;
+   halfword Flag6  			 :      1;
+   halfword Flag7      	 :      1;
+   halfword Flag8        :      1;  
+	 halfword Flag9        :      1; 
+	 halfword Flag10       :      1; 
+	 halfword Flag11       :      1; 
+	 halfword Flag12       :      1; 
+	 halfword Flag13       :      1; 
+	 halfword Flag14       :      1;
+	 halfword Flag15       :      1;
+	 halfword Flag16       :      1;
+  }Bits;
+ }Flag;
+extern  Flag Flags;	
+#define RollerSelect   		Flags.Bits.Flag1
+#define RollerUpdate    	Flags.Bits.Flag2	//
+#define LearnMode  				Flags.Bits.Flag3  //The Flag
+#define StdPress   				Flags.Bits.Flag4  // Avoid
+#define WarnTemp   				Flags.Bits.Flag5  // TFT Repeat
+#define SwapUnit   				Flags.Bits.Flag6  // Display Update
+#define SetMode   				Flags.Bits.Flag7
+#define UsartRxOK  				Flags.Bits.Flag8
+#define UsartLearnOK  		Flags.Bits.Flag9
+#define LearnW00Update  	Flags.Bits.Flag10
+#define LearnW01Update 		Flags.Bits.Flag11
+#define LearnW10Update  	Flags.Bits.Flag12
+#define LearnW11Update  	Flags.Bits.Flag13
+#define LearnW12Update  	Flags.Bits.Flag14
+#define LearnW13Update  	Flags.Bits.Flag15
+
+
+typedef union
+ {
+  byte WarrnWheel;
+  struct
+  {
+   byte Bit1        :      1;               
+   byte Bit2        :      1;
+   byte Bit3        :      1;
+   byte Bit4        :      1; 
+   byte Bit5        :      1;
+   byte Bit6  			:      1;
+   byte Bit7      	:      1;
+   byte Bit8        :      1;   
+  }Bits;
+ }Wheel;
+extern  Wheel WarningWheel;	
+#define WarnWheel00    	WarningWheel.Bits.Bit1
+#define WarnWheel01    	WarningWheel.Bits.Bit2
+#define WarnWheel10    	WarningWheel.Bits.Bit3
+#define WarnWheel11    	WarningWheel.Bits.Bit4
+#define WarnWheel12    	WarningWheel.Bits.Bit5
+#define WarnWheel13    	WarningWheel.Bits.Bit6
+
+
+typedef union
+ {
+  byte WarrnUpdate;
+  struct
+  {
+   byte Bit1        :      1;               
+   byte Bit2        :      1;
+   byte Bit3        :      1;
+   byte Bit4        :      1; 
+   byte Bit5        :      1;
+   byte Bit6  			:      1;
+   byte Bit7      	:      1;
+   byte Bit8        :      1;   
+  }Bits;
+ }Update;
+extern  Update WarrnUpdate;	
+#define WarnUp00    	WarrnUpdate.Bits.Bit1
+#define WarnUp01    	WarrnUpdate.Bits.Bit2
+#define WarnUp10    	WarrnUpdate.Bits.Bit3
+#define WarnUp11    	WarrnUpdate.Bits.Bit4
+#define WarnUp12    	WarrnUpdate.Bits.Bit5
+#define WarnUp13    	WarrnUpdate.Bits.Bit6
+
+
+typedef union
+ {
+  byte TheKey;
+  struct
+  {
+   byte Bit1        :      1;               
+   byte Bit2        :      1;
+   byte Bit3        :      1;
+   byte Bit4        :      1; 
+   byte Bit5        :      1;
+   byte Bit6  			:      1;
+   byte Bit7      	:      1;
+   byte Bit8        :      1;   
+  }Bits;
+ }Key;
+extern  Key KeyFlag;	
+#define Key1Pr    	KeyFlag.Bits.Bit1
+#define Key2Pr    	KeyFlag.Bits.Bit2
+#define Key3Pr    	KeyFlag.Bits.Bit3
+#define Key1LP    	KeyFlag.Bits.Bit4
+#define Key2LP    	KeyFlag.Bits.Bit5
+#define Key3LP    	KeyFlag.Bits.Bit6
+
+
+
+typedef union
+ {
+  halfword MenuState;
+  struct
+  {
+   halfword Bit1        :      1;               
+   halfword Bit2        :      1;
+   halfword Bit3        :      1;
+   halfword Bit4        :      1; 
+   halfword Bit5        :      1;
+   halfword Bit6  		  :      1;
+   halfword Bit7      	:      1;
+   halfword Bit8        :      1;     
+	 halfword Bit9        :      1; 
+	 halfword Bit10       :      1; 
+	 halfword Bit11       :      1; 
+	 halfword Bit12       :      1;
+	 halfword Bit13       :      1;
+	 halfword Bit14       :      1;
+	 halfword Bit15       :      1;
+	 halfword Bit16       :      1;
+  }Bits;
+ }Menu;
+extern 	 Menu MenuFlag;	
+#define MenuSelect 				MenuFlag.Bits.Bit1
+#define LearnSelect  			MenuFlag.Bits.Bit2
+#define PressSelect 			MenuFlag.Bits.Bit3
+#define TempSelect  			MenuFlag.Bits.Bit4
+#define UnitSelect   			MenuFlag.Bits.Bit5  //Relative Mode are Select
+#define UintSwap    			MenuFlag.Bits.Bit6  //0:Pressure Unit   1:Temperature Unit
+#define UintSwUpdata 			MenuFlag.Bits.Bit7  //Swap unit update count 
+#define BuzzerON    			MenuFlag.Bits.Bit8
+#define MainMenuUpdate   	MenuFlag.Bits.Bit9
+#define BarUpdate   			MenuFlag.Bits.Bit10
+#define TempUpdate				MenuFlag.Bits.Bit11
+#define SwapUnitUpdate   	MenuFlag.Bits.Bit12
+#define ExitSetUpdate    	MenuFlag.Bits.Bit13
+#define LearnUpdete      	MenuFlag.Bits.Bit14 
+#define UsartRxFlag		   	MenuFlag.Bits.Bit15
+#define ClearWarning	   	MenuFlag.Bits.Bit16
+
+
+
+/******************函数申明*********************/
+
+void delay(unsigned short z);
+void TimeOut_50ms(void);
+void TimeOut_10ms(void);
+void Delay_Second(byte time);
+void IWDG_Init(byte prer,halfword rlr);
+void IWDG_Feed(void);
+
+
+void PWM_Set(void);
+void Key_IOInit(void);
+void TB31371_IOInit(void);
+void OpenClock(void);
+void LED_IOInit(void);
+void OtherIO_Init(void);
+void USART1_Init(void);
+void CAN_Config(void);
+void KeyDipose(void);
+
+
+void Usart_Write_ID(void);
+void SET_Mode_Display_Menu(void);
+void Display_Lean_Mode(void);
+void SET_Mode_Display(void);
+void Display_Pressure_Set(void);
+void Display_Updata(void);
+void Cheek_Wheel_Status(void);
+void Warning_Dispose(void);
+void Check_Senser_Communication(void);
+void Clear_and_Display(void);
+
+void Time3Init(void);
+void Extic8_init(void);
+void Manchester_decode_for_fsk(uint16_t sign);
+void Get_SenserData(void);
+
+void Flash_Write(u32 add,word WriteData);
+void Flash_Write_Data(word FlashPageADD,word *WriteBuffer);
+void First_Power_On_Set(void);
+void Flash_Write_One_Word(u32 add,word WriteData);
+
+void LCD_SetCursor(unsigned short Xpos,unsigned short Ypos);
+void LCD_Fill_Pic(u16 x, u16 y,u16 pic_H, u16 pic_V, const unsigned char* pic);
+void DemoShowColorBar(void);
+void LCD_IOInit(void);
+void SysTickInit(void);
+void TimeOut_100ms(void);
+void LCD_WR_Comd(unsigned short com);
+void RCC_Configuration(void);
+void DrawPixel(unsigned short x, unsigned short y, unsigned short Color);
+void BlockWrite(unsigned int Xstart,unsigned int Xend,unsigned int Ystart,unsigned int Yend);
+void Lcd_ColorBox(unsigned short xStar,unsigned short xEnd,unsigned short yStar,unsigned short yEnd,unsigned short Color);
+void LCD_Initialize(void);
+void bsp_Init(void);
+void TFT_Draw(void);
+
+unsigned char HexToChar(unsigned char bChar);
+
+
+void delay_us(u32 nus);
+void delay_ms(u16 nms);
+void DS18B20_IO_IN(void);
+void DS18B20_IO_OUT(void);
+unsigned char DS18B20_Reset(void);
+void wr_one_bit(unsigned char Data);
+void wr_ds18b20(unsigned char BYTE);
+unsigned char Read_Bit(void);
+unsigned char rd_two_bits(void);
+unsigned char DS18B20_Read_Byte(void);
+
+unsigned char SearchRomID(unsigned char RomID[10][8]);
+byte do_crc8(byte *p,byte len);
+void Change_Resolution_ds18b20(void);
+void DS18B20_ReadDesignateTemper(void);
+void tempdisplay(void);
+
+#endif
+
+

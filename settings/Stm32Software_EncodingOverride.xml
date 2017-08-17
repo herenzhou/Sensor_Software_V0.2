@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<userOverrides>
+  <override>
+    <path>E:\&#x5468;&#x4eC1;&#x4F55;\&#x9879;&#x76ee;\TPMS\&#x663e;&#x793A;&#x5668;\TFT_Stm32Software\User\Logic.c</path>
+    <encoding>UTF-8</encoding>
+  </override>
+  <override>
+    <path>E:\&#x5468;&#x4eC1;&#x4F55;\&#x9879;&#x76ee;\TPMS\&#x663e;&#x793A;&#x5668;\TFT_Stm32Software\stm32f10x_it.c</path>
+    <encoding>System</encoding>
+  </override>
+</userOverrides>
+
+
