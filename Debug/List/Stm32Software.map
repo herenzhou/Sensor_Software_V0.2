@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ELF Linker V7.10.1.6676/W32 for ARM                 16/Aug/2017  11:50:48
+# IAR ELF Linker V7.10.1.6676/W32 for ARM                 17/Aug/2017  18:56:16
 # Copyright 2007-2014 IAR Systems AB.
 #
 #    Output file  =  
@@ -105,82 +105,75 @@ __SystemLibrary = DLib
   .intvec            ro code  0x08000000    0xec  startup_stm32f10x_md.o [1]
                             - 0x080000ec    0xec
 
-"P1":                                     0x2fa0
-  .text              ro code  0x080000ec   0xeb4  Logic.o [1]
-  .text              ro code  0x08000fa0   0x710  Bottom.o [1]
-  .text              ro code  0x080016b0    0x2c  I32ToDbl.o [4]
-  .text              ro code  0x080016dc   0x1a2  DblMul.o [4]
-  .text              ro code  0x0800187e    0x2e  copy_init3.o [5]
-  .text              ro code  0x080018ac    0x4c  DblToI32.o [4]
-  .text              ro code  0x080018f8    0xc4  stm32f10x_rcc.o [1]
-  .text              ro code  0x080019bc   0x17c  stm32f10x_flash.o [1]
-  .text              ro code  0x08001b38     0xc  memcpy.o [3]
-  .text              ro code  0x08001b44    0xc8  stm32f10x_gpio.o [1]
-  .text              ro code  0x08001c0c    0x38  stm32f10x_iwdg.o [1]
-  .text              ro code  0x08001c44   0x2f0  stm32f10x_tim.o [1]
-  .text              ro code  0x08001f34    0x80  misc.o [1]
-  .text              ro code  0x08001fb4   0x574  stm32f10x_can.o [1]
-  .text              ro code  0x08002528   0x1b4  stm32f10x_dma.o [1]
-  .text              ro code  0x080026dc   0x1a4  stm32f10x_adc.o [1]
-  .text              ro code  0x08002880    0x76  ABImemcpy_unaligned.o [5]
-  .text              ro code  0x080028f6    0x22  zero_init3.o [5]
-  .text              ro code  0x08002918   0x4bc  stm32f10x_it.o [1]
-  .text              ro code  0x08002dd4   0x15c  system_stm32f10x.o [1]
-  .text              ro code  0x08002f30    0x8c  main.o [1]
-  .text              ro code  0x08002fbc    0x28  data_init.o [5]
-  .iar.init_table    const    0x08002fe4    0x24  - Linker created -
-  .text              ro code  0x08003008    0x1a  cmain.o [5]
-  .text              ro code  0x08003022     0x4  low_level_init.o [3]
-  .text              ro code  0x08003026     0x4  exit.o [3]
-  .text              ro code  0x0800302c     0xa  cexit.o [5]
-  .text              ro code  0x08003038    0x14  exit.o [6]
-  .text              ro code  0x0800304c    0x10  startup_stm32f10x_md.o [1]
-  .text              ro code  0x0800305c     0xc  cstartup_M.o [5]
-  .text              ro code  0x08003068     0x4  startup_stm32f10x_md.o [1]
-  .rodata            const    0x0800306c     0x0  zero_init3.o [5]
-  .rodata            const    0x0800306c     0x0  copy_init3.o [5]
-  Initializer bytes  ro data  0x0800306c    0x20  <for P2 s0>
-                            - 0x0800308c  0x2fa0
+"P1":                                     0x3130
+  .text              ro code  0x080000ec  0x1010  Logic.o [1]
+  .text              ro code  0x080010fc   0x738  Bottom.o [1]
+  .text              ro code  0x08001834    0x2c  I32ToDbl.o [4]
+  .text              ro code  0x08001860   0x1a2  DblMul.o [4]
+  .text              ro code  0x08001a02    0x2e  copy_init3.o [5]
+  .text              ro code  0x08001a30    0x4c  DblToI32.o [4]
+  .text              ro code  0x08001a7c    0xc4  stm32f10x_rcc.o [1]
+  .text              ro code  0x08001b40   0x17c  stm32f10x_flash.o [1]
+  .text              ro code  0x08001cbc     0xc  memcpy.o [3]
+  .text              ro code  0x08001cc8    0xc8  stm32f10x_gpio.o [1]
+  .text              ro code  0x08001d90    0x38  stm32f10x_iwdg.o [1]
+  .text              ro code  0x08001dc8   0x2f0  stm32f10x_tim.o [1]
+  .text              ro code  0x080020b8    0x80  misc.o [1]
+  .text              ro code  0x08002138   0x574  stm32f10x_can.o [1]
+  .text              ro code  0x080026ac   0x1b4  stm32f10x_dma.o [1]
+  .text              ro code  0x08002860   0x1a4  stm32f10x_adc.o [1]
+  .text              ro code  0x08002a04    0x76  ABImemcpy_unaligned.o [5]
+  .text              ro code  0x08002a7a    0x22  zero_init3.o [5]
+  .text              ro code  0x08002a9c   0x4bc  stm32f10x_it.o [1]
+  .text              ro code  0x08002f58   0x15c  system_stm32f10x.o [1]
+  .text              ro code  0x080030b4    0x90  main.o [1]
+  .text              ro code  0x08003144    0x28  data_init.o [5]
+  .iar.init_table    const    0x0800316c    0x24  - Linker created -
+  .text              ro code  0x08003190    0x1a  cmain.o [5]
+  .text              ro code  0x080031aa     0x4  low_level_init.o [3]
+  .text              ro code  0x080031ae     0x4  exit.o [3]
+  .text              ro code  0x080031b4     0xa  cexit.o [5]
+  .text              ro code  0x080031c0    0x14  exit.o [6]
+  .text              ro code  0x080031d4    0x10  startup_stm32f10x_md.o [1]
+  .text              ro code  0x080031e4     0xc  cstartup_M.o [5]
+  .text              ro code  0x080031f0     0x4  startup_stm32f10x_md.o [1]
+  .rodata            const    0x080031f4     0x0  zero_init3.o [5]
+  .rodata            const    0x080031f4     0x0  copy_init3.o [5]
+  Initializer bytes  ro data  0x080031f4    0x28  <for P2 s0>
+                            - 0x0800321c  0x3130
 
-"P2", part 1 of 3:                          0x20
-  P2 s0                       0x20000000    0x20  <Init block>
+"P2", part 1 of 3:                          0x28
+  P2 s0                       0x20000000    0x28  <Init block>
     .data            inited   0x20000000     0xc  Logic.o [1]
     .data            inited   0x2000000c     0x8  Logic.o [1]
     .data            inited   0x20000014     0x8  Logic.o [1]
-    .data            inited   0x2000001c     0x2  stm32f10x_it.o [1]
-    .data            inited   0x2000001e     0x1  stm32f10x_it.o [1]
-                            - 0x20000020    0x20
+    .data            inited   0x2000001c     0x8  Logic.o [1]
+    .data            inited   0x20000024     0x2  stm32f10x_it.o [1]
+    .data            inited   0x20000026     0x1  stm32f10x_it.o [1]
+                            - 0x20000028    0x28
 
-"P2", part 2 of 3:                         0x158
-  .bss               zero     0x20000020    0x50  Logic.o [1]
-  .bss               zero     0x20000070    0x40  Logic.o [1]
-  .bss               zero     0x200000b0    0x28  Bottom.o [1]
-  .bss               zero     0x200000d8    0x14  Logic.o [1]
-  .bss               zero     0x200000ec    0x14  stm32f10x_it.o [1]
-  .bss               zero     0x20000100    0x14  stm32f10x_it.o [1]
-  .bss               zero     0x20000114     0xc  Variable.o [1]
-  .bss               zero     0x20000120     0x8  Logic.o [1]
-  .bss               zero     0x20000128     0x4  Logic.o [1]
-  .bss               zero     0x2000012c     0x4  Logic.o [1]
+"P2", part 2 of 3:                         0x160
+  .bss               zero     0x20000028    0x50  Logic.o [1]
+  .bss               zero     0x20000078    0x40  Logic.o [1]
+  .bss               zero     0x200000b8    0x28  Bottom.o [1]
+  .bss               zero     0x200000e0    0x14  Logic.o [1]
+  .bss               zero     0x200000f4    0x14  stm32f10x_it.o [1]
+  .bss               zero     0x20000108    0x14  stm32f10x_it.o [1]
+  .bss               zero     0x2000011c     0xc  Variable.o [1]
+  .bss               zero     0x20000128     0x8  Logic.o [1]
   .bss               zero     0x20000130     0x4  Logic.o [1]
-  .bss               zero     0x20000134     0x4  main.o [1]
-  .bss               zero     0x20000138     0x4  stm32f10x_it.o [1]
-  .bss               zero     0x2000013c     0x4  stm32f10x_it.o [1]
-  .bss               zero     0x20000140     0x4  Variable.o [1]
-  .bss               zero     0x20000144     0x2  Logic.o [1]
-  .bss               zero     0x20000146     0x2  Logic.o [1]
-  .bss               zero     0x20000148     0x2  Logic.o [1]
-  .bss               zero     0x2000014a     0x2  stm32f10x_it.o [1]
-  .bss               zero     0x2000014c     0x1  Bottom.o [1]
-  .bss               zero     0x2000014d     0x1  Bottom.o [1]
-  .bss               zero     0x2000014e     0x1  Logic.o [1]
-  .bss               zero     0x2000014f     0x1  Logic.o [1]
-  .bss               zero     0x20000150     0x1  Logic.o [1]
-  .bss               zero     0x20000151     0x1  Logic.o [1]
-  .bss               zero     0x20000152     0x1  Logic.o [1]
-  .bss               zero     0x20000153     0x1  Logic.o [1]
-  .bss               zero     0x20000154     0x1  Logic.o [1]
-  .bss               zero     0x20000155     0x1  Logic.o [1]
+  .bss               zero     0x20000134     0x4  Logic.o [1]
+  .bss               zero     0x20000138     0x4  Logic.o [1]
+  .bss               zero     0x2000013c     0x4  main.o [1]
+  .bss               zero     0x20000140     0x4  stm32f10x_it.o [1]
+  .bss               zero     0x20000144     0x4  stm32f10x_it.o [1]
+  .bss               zero     0x20000148     0x4  Variable.o [1]
+  .bss               zero     0x2000014c     0x2  Logic.o [1]
+  .bss               zero     0x2000014e     0x2  Logic.o [1]
+  .bss               zero     0x20000150     0x2  Logic.o [1]
+  .bss               zero     0x20000152     0x2  stm32f10x_it.o [1]
+  .bss               zero     0x20000154     0x1  Bottom.o [1]
+  .bss               zero     0x20000155     0x1  Bottom.o [1]
   .bss               zero     0x20000156     0x1  Logic.o [1]
   .bss               zero     0x20000157     0x1  Logic.o [1]
   .bss               zero     0x20000158     0x1  Logic.o [1]
@@ -198,28 +191,38 @@ __SystemLibrary = DLib
   .bss               zero     0x20000164     0x1  Logic.o [1]
   .bss               zero     0x20000165     0x1  Logic.o [1]
   .bss               zero     0x20000166     0x1  Logic.o [1]
-  .bss               zero     0x20000167     0x1  main.o [1]
-  .bss               zero     0x20000168     0x1  main.o [1]
-  .bss               zero     0x20000169     0x1  main.o [1]
-  .bss               zero     0x2000016a     0x1  main.o [1]
-  .bss               zero     0x2000016b     0x1  main.o [1]
-  .bss               zero     0x2000016c     0x1  main.o [1]
-  .bss               zero     0x2000016d     0x1  stm32f10x_it.o [1]
-  .bss               zero     0x2000016e     0x1  stm32f10x_it.o [1]
-  .bss               zero     0x2000016f     0x1  stm32f10x_it.o [1]
-  .bss               zero     0x20000170     0x1  stm32f10x_it.o [1]
-  .bss               zero     0x20000171     0x1  stm32f10x_it.o [1]
-  .bss               zero     0x20000172     0x1  stm32f10x_it.o [1]
-  .bss               zero     0x20000173     0x1  stm32f10x_it.o [1]
-  .bss               zero     0x20000174     0x1  stm32f10x_it.o [1]
-  .bss               zero     0x20000175     0x1  stm32f10x_it.o [1]
-  .bss               zero     0x20000176     0x1  stm32f10x_it.o [1]
-                            - 0x20000177   0x157
+  .bss               zero     0x20000167     0x1  Logic.o [1]
+  .bss               zero     0x20000168     0x1  Logic.o [1]
+  .bss               zero     0x20000169     0x1  Logic.o [1]
+  .bss               zero     0x2000016a     0x1  Logic.o [1]
+  .bss               zero     0x2000016b     0x1  Logic.o [1]
+  .bss               zero     0x2000016c     0x1  Logic.o [1]
+  .bss               zero     0x2000016d     0x1  Logic.o [1]
+  .bss               zero     0x2000016e     0x1  Logic.o [1]
+  .bss               zero     0x2000016f     0x1  Logic.o [1]
+  .bss               zero     0x20000170     0x1  Logic.o [1]
+  .bss               zero     0x20000171     0x1  main.o [1]
+  .bss               zero     0x20000172     0x1  main.o [1]
+  .bss               zero     0x20000173     0x1  main.o [1]
+  .bss               zero     0x20000174     0x1  main.o [1]
+  .bss               zero     0x20000175     0x1  main.o [1]
+  .bss               zero     0x20000176     0x1  main.o [1]
+  .bss               zero     0x20000177     0x1  stm32f10x_it.o [1]
+  .bss               zero     0x20000178     0x1  stm32f10x_it.o [1]
+  .bss               zero     0x20000179     0x1  stm32f10x_it.o [1]
+  .bss               zero     0x2000017a     0x1  stm32f10x_it.o [1]
+  .bss               zero     0x2000017b     0x1  stm32f10x_it.o [1]
+  .bss               zero     0x2000017c     0x1  stm32f10x_it.o [1]
+  .bss               zero     0x2000017d     0x1  stm32f10x_it.o [1]
+  .bss               zero     0x2000017e     0x1  stm32f10x_it.o [1]
+  .bss               zero     0x2000017f     0x1  stm32f10x_it.o [1]
+  .bss               zero     0x20000180     0x1  stm32f10x_it.o [1]
+                            - 0x20000181   0x159
 
 "P2", part 3 of 3:                        0x1000
-  CSTACK                      0x20000178  0x1000  <Block>
-    CSTACK           uninit   0x20000178  0x1000  <Block tail>
-                            - 0x20001178  0x1000
+  CSTACK                      0x20000188  0x1000  <Block>
+    CSTACK           uninit   0x20000188  0x1000  <Block tail>
+                            - 0x20001188  0x1000
 
 
 *******************************************************************************
@@ -229,14 +232,14 @@ __SystemLibrary = DLib
           Address     Size
           -------     ----
 Zero (__iar_zero_init3)
-    1 destination range, total size 0x157:
-          0x20000020  0x157
+    1 destination range, total size 0x159:
+          0x20000028  0x159
 
 Copy (__iar_copy_init3)
-    1 source range, total size 0x20 (103% of destination):
-          0x0800306c   0x20
-    1 destination range, total size 0x1f:
-          0x20000000   0x1f
+    1 source range, total size 0x28 (102% of destination):
+          0x080031f4   0x28
+    1 destination range, total size 0x27:
+          0x20000000   0x27
 
 
 
@@ -247,10 +250,10 @@ Copy (__iar_copy_init3)
     Module                  ro code  ro data  rw data
     ------                  -------  -------  -------
 E:\Andy(2015.03.22-)\Project\Fire Alarm System\Sensor\SoftWare\Sensor_Software_V0.2\Debug\Obj: [1]
-    Bottom.o                  1 808                42
-    Logic.o                   3 764       28      243
+    Bottom.o                  1 848                42
+    Logic.o                   4 112       36      253
     Variable.o                                     16
-    main.o                      140                10
+    main.o                      144                10
     misc.o                      128
     startup_stm32f10x_md.o      256
     stm32f10x_adc.o             420
@@ -264,7 +267,7 @@ E:\Andy(2015.03.22-)\Project\Fire Alarm System\Sensor\SoftWare\Sensor_Software_V
     stm32f10x_tim.o             752
     system_stm32f10x.o          348
     -------------------------------------------------
-    Total:                   11 492       31      374
+    Total:                   11 884       39      384
 
 command line: [2]
     -------------------------------------------------
@@ -303,7 +306,7 @@ shb_l.a: [6]
     Gaps                          4
     Linker created                        37    4 096
 -----------------------------------------------------
-    Grand Total:             12 360       68    4 470
+    Grand Total:             12 752       76    4 480
 
 
 *******************************************************************************
@@ -312,164 +315,166 @@ shb_l.a: [6]
 
 Entry                      Address   Size  Type      Object
 -----                      -------   ----  ----      ------
-?main                   0x08003009         Code  Gb  cmain.o [5]
-ADC1_DMA_Config         0x0800154b  0x110  Code  Gb  Bottom.o [1]
-ADCConvertedValue       0x200000b0   0x28  Data  Gb  Bottom.o [1]
-ADC_Cmd                 0x08002729   0x1a  Code  Gb  stm32f10x_adc.o [1]
-ADC_DMACmd              0x08002743   0x1a  Code  Gb  stm32f10x_adc.o [1]
+?main                   0x08003191         Code  Gb  cmain.o [5]
+ADC1_DMA_Config         0x080016cb  0x110  Code  Gb  Bottom.o [1]
+ADCConvertedValue       0x200000b8   0x28  Data  Gb  Bottom.o [1]
+ADC_Cmd                 0x080028ad   0x1a  Code  Gb  stm32f10x_adc.o [1]
+ADC_DMACmd              0x080028c7   0x1a  Code  Gb  stm32f10x_adc.o [1]
 ADC_GetCalibrationStatus
-                        0x08002785   0x14  Code  Gb  stm32f10x_adc.o [1]
+                        0x08002909   0x14  Code  Gb  stm32f10x_adc.o [1]
 ADC_GetResetCalibrationStatus
-                        0x08002767   0x14  Code  Gb  stm32f10x_adc.o [1]
-ADC_Init                0x080026dd   0x4c  Code  Gb  stm32f10x_adc.o [1]
+                        0x080028eb   0x14  Code  Gb  stm32f10x_adc.o [1]
+ADC_Init                0x08002861   0x4c  Code  Gb  stm32f10x_adc.o [1]
 ADC_RegularChannelConfig
-                        0x080027b3   0xc4  Code  Gb  stm32f10x_adc.o [1]
-ADC_ResetCalibration    0x0800275d    0xa  Code  Gb  stm32f10x_adc.o [1]
+                        0x08002937   0xc4  Code  Gb  stm32f10x_adc.o [1]
+ADC_ResetCalibration    0x080028e1    0xa  Code  Gb  stm32f10x_adc.o [1]
 ADC_SoftwareStartConvCmd
-                        0x08002799   0x1a  Code  Gb  stm32f10x_adc.o [1]
-ADC_StartCalibration    0x0800277b    0xa  Code  Gb  stm32f10x_adc.o [1]
-BusFault_Handler        0x08002dc9    0x2  Code  Gb  stm32f10x_it.o [1]
-CAN_Byte2               0x20000138    0x4  Data  Gb  stm32f10x_it.o [1]
-CAN_Byte3               0x2000013c    0x4  Data  Gb  stm32f10x_it.o [1]
-CAN_ClearITPendingBit   0x08002473   0x92  Code  Gb  stm32f10x_can.o [1]
-CAN_Config              0x080013c9  0x182  Code  Gb  Bottom.o [1]
-CAN_DeInit              0x08001fb5   0x36  Code  Gb  stm32f10x_can.o [1]
-CAN_ExtID               0x20000134    0x4  Data  Gb  main.o [1]
-CAN_FIFORelease         0x08002441   0x1a  Code  Gb  stm32f10x_can.o [1]
-CAN_FilterInit          0x080020fb  0x112  Code  Gb  stm32f10x_can.o [1]
-CAN_ITConfig            0x0800245b   0x18  Code  Gb  stm32f10x_can.o [1]
-CAN_Init                0x08001feb  0x110  Code  Gb  stm32f10x_can.o [1]
-CAN_Period              0x2000016b    0x1  Data  Gb  main.o [1]
-CAN_ReOk                0x2000016d    0x1  Data  Gb  stm32f10x_it.o [1]
-CAN_Receive             0x08002359   0xe8  Code  Gb  stm32f10x_can.o [1]
-CAN_StructInit          0x0800220d   0x2e  Code  Gb  stm32f10x_can.o [1]
-CAN_Transmit            0x0800223b  0x11e  Code  Gb  stm32f10x_can.o [1]
-CSTACK$$Base            0x20000178          --   Gb  - Linker created -
-CSTACK$$Limit           0x20001178          --   Gb  - Linker created -
-CheckCO                 0x080006ff   0xc6  Code  Gb  Logic.o [1]
-CheckFlame              0x08000801  0x1b0  Code  Gb  Logic.o [1]
-ChenckIon               0x0800065f   0xa0  Code  Gb  Logic.o [1]
-DMA_Cmd                 0x08002671   0x1c  Code  Gb  stm32f10x_dma.o [1]
-DMA_DeInit              0x08002529  0x10a  Code  Gb  stm32f10x_dma.o [1]
-DMA_ITConfig            0x0800268d   0x18  Code  Gb  stm32f10x_dma.o [1]
-DMA_Init                0x08002633   0x3e  Code  Gb  stm32f10x_dma.o [1]
-DS18B20ID               0x20000020   0x50  Data  Gb  Logic.o [1]
-DS18B20NUM              0x2000016c    0x1  Data  Gb  main.o [1]
-DS18B20_IO_IN           0x08001019   0x1a  Code  Gb  Bottom.o [1]
-DS18B20_IO_OUT          0x08001033   0x20  Code  Gb  Bottom.o [1]
+                        0x0800291d   0x1a  Code  Gb  stm32f10x_adc.o [1]
+ADC_StartCalibration    0x080028ff    0xa  Code  Gb  stm32f10x_adc.o [1]
+BusFault_Handler        0x08002f4d    0x2  Code  Gb  stm32f10x_it.o [1]
+CAN_Byte2               0x20000140    0x4  Data  Gb  stm32f10x_it.o [1]
+CAN_Byte3               0x20000144    0x4  Data  Gb  stm32f10x_it.o [1]
+CAN_ClearITPendingBit   0x080025f7   0x92  Code  Gb  stm32f10x_can.o [1]
+CAN_Config              0x08001549  0x182  Code  Gb  Bottom.o [1]
+CAN_DeInit              0x08002139   0x36  Code  Gb  stm32f10x_can.o [1]
+CAN_ExtID               0x2000013c    0x4  Data  Gb  main.o [1]
+CAN_FIFORelease         0x080025c5   0x1a  Code  Gb  stm32f10x_can.o [1]
+CAN_FilterInit          0x0800227f  0x112  Code  Gb  stm32f10x_can.o [1]
+CAN_ITConfig            0x080025df   0x18  Code  Gb  stm32f10x_can.o [1]
+CAN_Init                0x0800216f  0x110  Code  Gb  stm32f10x_can.o [1]
+CAN_Period              0x20000175    0x1  Data  Gb  main.o [1]
+CAN_ReOk                0x20000177    0x1  Data  Gb  stm32f10x_it.o [1]
+CAN_Receive             0x080024dd   0xe8  Code  Gb  stm32f10x_can.o [1]
+CAN_StructInit          0x08002391   0x2e  Code  Gb  stm32f10x_can.o [1]
+CAN_Transmit            0x080023bf  0x11e  Code  Gb  stm32f10x_can.o [1]
+CSTACK$$Base            0x20000188          --   Gb  - Linker created -
+CSTACK$$Limit           0x20001188          --   Gb  - Linker created -
+CheckCO                 0x0800079f   0xc6  Code  Gb  Logic.o [1]
+CheckFlame              0x080008c9  0x1b0  Code  Gb  Logic.o [1]
+ChenckIon               0x0800065f  0x140  Code  Gb  Logic.o [1]
+DMA_Cmd                 0x080027f5   0x1c  Code  Gb  stm32f10x_dma.o [1]
+DMA_DeInit              0x080026ad  0x10a  Code  Gb  stm32f10x_dma.o [1]
+DMA_ITConfig            0x08002811   0x18  Code  Gb  stm32f10x_dma.o [1]
+DMA_Init                0x080027b7   0x3e  Code  Gb  stm32f10x_dma.o [1]
+DS18B20ID               0x20000028   0x50  Data  Gb  Logic.o [1]
+DS18B20NUM              0x20000176    0x1  Data  Gb  main.o [1]
+DS18B20_IO_IN           0x08001175   0x1a  Code  Gb  Bottom.o [1]
+DS18B20_IO_OUT          0x0800118f   0x20  Code  Gb  Bottom.o [1]
 DS18B20_ReadDesignateTemper
                         0x0800046f  0x14a  Code  Gb  Logic.o [1]
-DS18B20_Read_Byte       0x08001195   0x5a  Code  Gb  Bottom.o [1]
-DS18B20_Reset           0x08001053   0x5e  Code  Gb  Bottom.o [1]
-DebugMon_Handler        0x08002dcf    0x2  Code  Gb  stm32f10x_it.o [1]
-EXTI9_5_IRQHandler      0x08002dc3    0x2  Code  Gb  stm32f10x_it.o [1]
-FLASH_ClearFlag         0x08001ac3    0x6  Code  Gb  stm32f10x_flash.o [1]
-FLASH_ErasePage         0x080019e5   0x5e  Code  Gb  stm32f10x_flash.o [1]
-FLASH_GetBank1Status    0x08001ac9   0x2c  Code  Gb  stm32f10x_flash.o [1]
-FLASH_Lock              0x080019d3   0x12  Code  Gb  stm32f10x_flash.o [1]
-FLASH_ProgramWord       0x08001a43   0x80  Code  Gb  stm32f10x_flash.o [1]
-FLASH_Unlock            0x080019bd   0x16  Code  Gb  stm32f10x_flash.o [1]
+DS18B20_Read_Byte       0x080012f1   0x5a  Code  Gb  Bottom.o [1]
+DS18B20_Reset           0x080011af   0x5e  Code  Gb  Bottom.o [1]
+DebugMon_Handler        0x08002f53    0x2  Code  Gb  stm32f10x_it.o [1]
+EXTI9_5_IRQHandler      0x08002f47    0x2  Code  Gb  stm32f10x_it.o [1]
+FLASH_ClearFlag         0x08001c47    0x6  Code  Gb  stm32f10x_flash.o [1]
+FLASH_ErasePage         0x08001b69   0x5e  Code  Gb  stm32f10x_flash.o [1]
+FLASH_GetBank1Status    0x08001c4d   0x2c  Code  Gb  stm32f10x_flash.o [1]
+FLASH_Lock              0x08001b57   0x12  Code  Gb  stm32f10x_flash.o [1]
+FLASH_ProgramWord       0x08001bc7   0x80  Code  Gb  stm32f10x_flash.o [1]
+FLASH_Unlock            0x08001b41   0x16  Code  Gb  stm32f10x_flash.o [1]
 FLASH_WaitForLastOperation
-                        0x08001b0d   0x2c  Code  Gb  stm32f10x_flash.o [1]
-FedBackFlag             0x2000016f    0x1  Data  Gb  stm32f10x_it.o [1]
+                        0x08001c91   0x2c  Code  Gb  stm32f10x_flash.o [1]
+FedBackFlag             0x20000179    0x1  Data  Gb  stm32f10x_it.o [1]
 FlashBuffer1            0x2000000c    0x8  Data  Gb  Logic.o [1]
 FlashBuffer2            0x20000014    0x8  Data  Gb  Logic.o [1]
-Flash_Wr1               0x08000a61   0x5e  Code  Gb  Logic.o [1]
-Flash_Wr2               0x08000ac1   0x5e  Code  Gb  Logic.o [1]
-GPIO_Init               0x08001b45   0xc8  Code  Gb  stm32f10x_gpio.o [1]
-HardFault_Handler       0x08002dc5    0x2  Code  Gb  stm32f10x_it.o [1]
-IWDG_Enable             0x08001c2f    0xa  Code  Gb  stm32f10x_iwdg.o [1]
-IWDG_Feed               0x08001245    0x8  Code  Gb  Bottom.o [1]
-IWDG_Init               0x0800121d   0x28  Code  Gb  Bottom.o [1]
-IWDG_ReloadCounter      0x08001c25    0xa  Code  Gb  stm32f10x_iwdg.o [1]
-IWDG_SetPrescaler       0x08001c15    0x8  Code  Gb  stm32f10x_iwdg.o [1]
-IWDG_SetReload          0x08001c1d    0x8  Code  Gb  stm32f10x_iwdg.o [1]
-IWDG_WriteAccessCmd     0x08001c0d    0x8  Code  Gb  stm32f10x_iwdg.o [1]
-Key_IOInit              0x0800134d   0x46  Code  Gb  Bottom.o [1]
-LED_IOInit              0x08001393   0x36  Code  Gb  Bottom.o [1]
-MemManage_Handler       0x08002dc7    0x2  Code  Gb  stm32f10x_it.o [1]
-NMI_Handler             0x08002945    0x2  Code  Gb  stm32f10x_it.o [1]
-NVIC_DisableIRQ         0x0800292f   0x16  Code  Lc  stm32f10x_it.o [1]
-NVIC_EnableIRQ          0x08002919   0x16  Code  Lc  stm32f10x_it.o [1]
-NVIC_Init               0x08001f3f   0x62  Code  Gb  misc.o [1]
-NVIC_InitStructure      0x20000140    0x4  Data  Gb  Variable.o [1]
+FlashBuffer3            0x2000001c    0x8  Data  Gb  Logic.o [1]
+Flash_Wr1               0x08000b29   0x5e  Code  Gb  Logic.o [1]
+Flash_Wr2               0x08000b89   0x5e  Code  Gb  Logic.o [1]
+GPIO_Init               0x08001cc9   0xc8  Code  Gb  stm32f10x_gpio.o [1]
+HardFault_Handler       0x08002f49    0x2  Code  Gb  stm32f10x_it.o [1]
+IWDG_Enable             0x08001db3    0xa  Code  Gb  stm32f10x_iwdg.o [1]
+IWDG_Feed               0x080013a1    0x8  Code  Gb  Bottom.o [1]
+IWDG_Init               0x08001379   0x28  Code  Gb  Bottom.o [1]
+IWDG_ReloadCounter      0x08001da9    0xa  Code  Gb  stm32f10x_iwdg.o [1]
+IWDG_SetPrescaler       0x08001d99    0x8  Code  Gb  stm32f10x_iwdg.o [1]
+IWDG_SetReload          0x08001da1    0x8  Code  Gb  stm32f10x_iwdg.o [1]
+IWDG_WriteAccessCmd     0x08001d91    0x8  Code  Gb  stm32f10x_iwdg.o [1]
+Key_IOInit              0x080014a9   0x46  Code  Gb  Bottom.o [1]
+LED_IOInit              0x080014ef   0x5a  Code  Gb  Bottom.o [1]
+MemManage_Handler       0x08002f4b    0x2  Code  Gb  stm32f10x_it.o [1]
+NMI_Handler             0x08002ac9    0x2  Code  Gb  stm32f10x_it.o [1]
+NVIC_DisableIRQ         0x08002ab3   0x16  Code  Lc  stm32f10x_it.o [1]
+NVIC_EnableIRQ          0x08002a9d   0x16  Code  Lc  stm32f10x_it.o [1]
+NVIC_Init               0x080020c3   0x62  Code  Gb  misc.o [1]
+NVIC_InitStructure      0x20000148    0x4  Data  Gb  Variable.o [1]
 NVIC_PriorityGroupConfig
-                        0x08001f35    0xa  Code  Gb  misc.o [1]
-OpenClock               0x080011ef   0x2e  Code  Gb  Bottom.o [1]
-PendSV_Handler          0x08002dd1    0x2  Code  Gb  stm32f10x_it.o [1]
-RCC_AHBPeriphClockCmd   0x08001903   0x20  Code  Gb  stm32f10x_rcc.o [1]
-RCC_APB1PeriphClockCmd  0x08001943   0x20  Code  Gb  stm32f10x_rcc.o [1]
-RCC_APB1PeriphResetCmd  0x08001983   0x20  Code  Gb  stm32f10x_rcc.o [1]
-RCC_APB2PeriphClockCmd  0x08001923   0x20  Code  Gb  stm32f10x_rcc.o [1]
-RCC_APB2PeriphResetCmd  0x08001963   0x20  Code  Gb  stm32f10x_rcc.o [1]
-RCC_HSICmd              0x080018f9    0xa  Code  Gb  stm32f10x_rcc.o [1]
-Read_Bit                0x0800114d   0x48  Code  Gb  Bottom.o [1]
-Region$$Table$$Base     0x08002fe4          --   Gb  - Linker created -
-Region$$Table$$Limit    0x08003008          --   Gb  - Linker created -
-RxMessage               0x200000ec   0x14  Data  Gb  stm32f10x_it.o [1]
-SVC_Handler             0x08002dcd    0x2  Code  Gb  stm32f10x_it.o [1]
-SdTempValue             0x2000014a    0x2  Data  Gb  stm32f10x_it.o [1]
+                        0x080020b9    0xa  Code  Gb  misc.o [1]
+OpenClock               0x0800134b   0x2e  Code  Gb  Bottom.o [1]
+PendSV_Handler          0x08002f55    0x2  Code  Gb  stm32f10x_it.o [1]
+RCC_AHBPeriphClockCmd   0x08001a87   0x20  Code  Gb  stm32f10x_rcc.o [1]
+RCC_APB1PeriphClockCmd  0x08001ac7   0x20  Code  Gb  stm32f10x_rcc.o [1]
+RCC_APB1PeriphResetCmd  0x08001b07   0x20  Code  Gb  stm32f10x_rcc.o [1]
+RCC_APB2PeriphClockCmd  0x08001aa7   0x20  Code  Gb  stm32f10x_rcc.o [1]
+RCC_APB2PeriphResetCmd  0x08001ae7   0x20  Code  Gb  stm32f10x_rcc.o [1]
+RCC_HSICmd              0x08001a7d    0xa  Code  Gb  stm32f10x_rcc.o [1]
+Read_Bit                0x080012a9   0x48  Code  Gb  Bottom.o [1]
+Region$$Table$$Base     0x0800316c          --   Gb  - Linker created -
+Region$$Table$$Limit    0x08003190          --   Gb  - Linker created -
+RxMessage               0x200000f4   0x14  Data  Gb  stm32f10x_it.o [1]
+SVC_Handler             0x08002f51    0x2  Code  Gb  stm32f10x_it.o [1]
+SdTempValue             0x20000152    0x2  Data  Gb  stm32f10x_it.o [1]
 SearchRomID             0x080000ed  0x382  Code  Gb  Logic.o [1]
-SetSysClock             0x08002e29    0x8  Code  Lc  system_stm32f10x.o [1]
-SetSysClockTo72         0x08002e31   0xe0  Code  Lc  system_stm32f10x.o [1]
-SmokeEnsure             0x080007c5   0x3c  Code  Gb  Logic.o [1]
-StateByte               0x20000128    0x4  Data  Gb  Logic.o [1]
-SysTick_Handler         0x08002dd3    0x2  Code  Gb  stm32f10x_it.o [1]
-SystemInit              0x08002dd5   0x54  Code  Gb  system_stm32f10x.o [1]
-TIM2_IRQHandler         0x08002947  0x216  Code  Gb  stm32f10x_it.o [1]
-TIM3_IRQHandler         0x08002b5d  0x1a6  Code  Gb  stm32f10x_it.o [1]
-TIM4_IRQHandler         0x08002d03    0x2  Code  Gb  stm32f10x_it.o [1]
-TIM_ClearITPendingBit   0x08001eeb    0x8  Code  Gb  stm32f10x_tim.o [1]
-TIM_Cmd                 0x08001eb7   0x1c  Code  Gb  stm32f10x_tim.o [1]
-TIM_DeInit              0x08001c45  0x1de  Code  Gb  stm32f10x_tim.o [1]
-TIM_ITConfig            0x08001ed3   0x18  Code  Gb  stm32f10x_tim.o [1]
-TIM_TimeBaseInit        0x08001e23   0x94  Code  Gb  stm32f10x_tim.o [1]
-TIM_TimerBaseStruct     0x20000114    0xc  Data  Gb  Variable.o [1]
-TempLineCheck           0x080009b1   0xac  Code  Gb  Logic.o [1]
-TempLineSort            0x2000014e    0x1  Data  Gb  Logic.o [1]
-TempOverFlag            0x2000016e    0x1  Data  Gb  stm32f10x_it.o [1]
-Time3Init               0x080012cd   0x80  Code  Gb  Bottom.o [1]
-TimeOut_50ms            0x0800124d   0x80  Code  Gb  Bottom.o [1]
-Time_H                  0x20000169    0x1  Data  Gb  main.o [1]
-Time_M                  0x20000168    0x1  Data  Gb  main.o [1]
-Time_S                  0x20000167    0x1  Data  Gb  main.o [1]
-USART1_IRQHandler       0x08002dc1    0x2  Code  Gb  stm32f10x_it.o [1]
+SetSysClock             0x08002fad    0x8  Code  Lc  system_stm32f10x.o [1]
+SetSysClockTo72         0x08002fb5   0xe0  Code  Lc  system_stm32f10x.o [1]
+SmokeEnsure             0x08000865   0x64  Code  Gb  Logic.o [1]
+StateByte               0x20000130    0x4  Data  Gb  Logic.o [1]
+SysTick_Handler         0x08002f57    0x2  Code  Gb  stm32f10x_it.o [1]
+SystemInit              0x08002f59   0x54  Code  Gb  system_stm32f10x.o [1]
+TIM2_IRQHandler         0x08002acb  0x216  Code  Gb  stm32f10x_it.o [1]
+TIM3_IRQHandler         0x08002ce1  0x1a6  Code  Gb  stm32f10x_it.o [1]
+TIM4_IRQHandler         0x08002e87    0x2  Code  Gb  stm32f10x_it.o [1]
+TIM_ClearITPendingBit   0x0800206f    0x8  Code  Gb  stm32f10x_tim.o [1]
+TIM_Cmd                 0x0800203b   0x1c  Code  Gb  stm32f10x_tim.o [1]
+TIM_DeInit              0x08001dc9  0x1de  Code  Gb  stm32f10x_tim.o [1]
+TIM_ITConfig            0x08002057   0x18  Code  Gb  stm32f10x_tim.o [1]
+TIM_TimeBaseInit        0x08001fa7   0x94  Code  Gb  stm32f10x_tim.o [1]
+TIM_TimerBaseStruct     0x2000011c    0xc  Data  Gb  Variable.o [1]
+TempLineCheck           0x08000a79   0xac  Code  Gb  Logic.o [1]
+TempLineSort            0x20000156    0x1  Data  Gb  Logic.o [1]
+TempOverFlag            0x20000178    0x1  Data  Gb  stm32f10x_it.o [1]
+Time3Init               0x08001429   0x80  Code  Gb  Bottom.o [1]
+TimeOut_50ms            0x080013a9   0x80  Code  Gb  Bottom.o [1]
+Time_H                  0x20000173    0x1  Data  Gb  main.o [1]
+Time_M                  0x20000172    0x1  Data  Gb  main.o [1]
+Time_S                  0x20000171    0x1  Data  Gb  main.o [1]
+USART1_IRQHandler       0x08002f45    0x2  Code  Gb  stm32f10x_it.o [1]
 USB_LP_CAN1_RX0_IRQHandler
-                        0x08002d05   0x3c  Code  Gb  stm32f10x_it.o [1]
-UsageFault_Handler      0x08002dcb    0x2  Code  Gb  stm32f10x_it.o [1]
-WarningMaskBit          0x2000016a    0x1  Data  Gb  main.o [1]
-__aeabi_d2iz            0x080018ad         Code  Gb  DblToI32.o [4]
-__aeabi_dmul            0x080016dd         Code  Gb  DblMul.o [4]
-__aeabi_i2d             0x080016b1         Code  Gb  I32ToDbl.o [4]
-__cmain                 0x08003009         Code  Gb  cmain.o [5]
-__exit                  0x08003039   0x14  Code  Gb  exit.o [6]
-__iar_copy_init3        0x0800187f   0x2e  Code  Gb  copy_init3.o [5]
-__iar_d2uiz             0x080018d9         Code  Gb  DblToI32.o [4]
-__iar_data_init3        0x08002fbd   0x28  Code  Gb  data_init.o [5]
-__iar_program_start     0x0800305d         Code  Gb  cstartup_M.o [5]
-__iar_ui2d              0x080016c5         Code  Gb  I32ToDbl.o [4]
+                        0x08002e89   0x3c  Code  Gb  stm32f10x_it.o [1]
+UsageFault_Handler      0x08002f4f    0x2  Code  Gb  stm32f10x_it.o [1]
+WarningMaskBit          0x20000174    0x1  Data  Gb  main.o [1]
+WriteIonValue           0x08000fb9   0x7a  Code  Gb  Logic.o [1]
+__aeabi_d2iz            0x08001a31         Code  Gb  DblToI32.o [4]
+__aeabi_dmul            0x08001861         Code  Gb  DblMul.o [4]
+__aeabi_i2d             0x08001835         Code  Gb  I32ToDbl.o [4]
+__cmain                 0x08003191         Code  Gb  cmain.o [5]
+__exit                  0x080031c1   0x14  Code  Gb  exit.o [6]
+__iar_copy_init3        0x08001a03   0x2e  Code  Gb  copy_init3.o [5]
+__iar_d2uiz             0x08001a5d         Code  Gb  DblToI32.o [4]
+__iar_data_init3        0x08003145   0x28  Code  Gb  data_init.o [5]
+__iar_program_start     0x080031e5         Code  Gb  cstartup_M.o [5]
+__iar_ui2d              0x08001849         Code  Gb  I32ToDbl.o [4]
 __iar_unaligned___aeabi_memcpy
-                        0x08002881         Code  Gb  ABImemcpy_unaligned.o [5]
+                        0x08002a05         Code  Gb  ABImemcpy_unaligned.o [5]
 __iar_unaligned___aeabi_memcpy4
-                        0x080028a1         Code  Gb  ABImemcpy_unaligned.o [5]
+                        0x08002a25         Code  Gb  ABImemcpy_unaligned.o [5]
 __iar_unaligned___aeabi_memcpy8
-                        0x080028a1         Code  Gb  ABImemcpy_unaligned.o [5]
-__iar_zero_init3        0x080028f7   0x22  Code  Gb  zero_init3.o [5]
-__low_level_init        0x08003023    0x4  Code  Gb  low_level_init.o [3]
+                        0x08002a25         Code  Gb  ABImemcpy_unaligned.o [5]
+__iar_zero_init3        0x08002a7b   0x22  Code  Gb  zero_init3.o [5]
+__low_level_init        0x080031ab    0x4  Code  Gb  low_level_init.o [3]
 __vector_table          0x08000000         Data  Gb  startup_stm32f10x_md.o [1]
-_call_main              0x08003015         Code  Gb  cmain.o [5]
-_exit                   0x0800302d         Code  Gb  cexit.o [5]
-_main                   0x0800301f         Code  Gb  cmain.o [5]
-delay_ms                0x08000fdb   0x3e  Code  Gb  Bottom.o [1]
-delay_us                0x08000fa1   0x3a  Code  Gb  Bottom.o [1]
-exit                    0x08003027    0x4  Code  Gb  exit.o [3]
-main                    0x08002f31   0x8c  Code  Gb  main.o [1]
-memcpy                  0x08001b39    0xc  Code  Gb  memcpy.o [3]
+_call_main              0x0800319d         Code  Gb  cmain.o [5]
+_exit                   0x080031b5         Code  Gb  cexit.o [5]
+_main                   0x080031a7         Code  Gb  cmain.o [5]
+delay_ms                0x08001137   0x3e  Code  Gb  Bottom.o [1]
+delay_us                0x080010fd   0x3a  Code  Gb  Bottom.o [1]
+exit                    0x080031af    0x4  Code  Gb  exit.o [3]
+main                    0x080030b5   0x90  Code  Gb  main.o [1]
+memcpy                  0x08001cbd    0xc  Code  Gb  memcpy.o [3]
 searchHighTemp          0x080005b9   0xa6  Code  Gb  Logic.o [1]
-temparray               0x200000d8   0x14  Data  Gb  Logic.o [1]
-update_CANID            0x08000b41  0x39c  Code  Gb  Logic.o [1]
-wr_ds18b20              0x080010f5   0x58  Code  Gb  Bottom.o [1]
-wr_one_bit              0x080010b5   0x40  Code  Gb  Bottom.o [1]
+temparray               0x200000e0   0x14  Data  Gb  Logic.o [1]
+update_CANID            0x08000c11  0x39c  Code  Gb  Logic.o [1]
+wr_ds18b20              0x08001251   0x58  Code  Gb  Bottom.o [1]
+wr_one_bit              0x08001211   0x40  Code  Gb  Bottom.o [1]
 
 
 [1] = E:\Andy(2015.03.22-)\Project\Fire Alarm System\Sensor\SoftWare\Sensor_Software_V0.2\Debug\Obj
@@ -479,9 +484,9 @@ wr_one_bit              0x080010b5   0x40  Code  Gb  Bottom.o [1]
 [5] = rt7M_tl.a
 [6] = shb_l.a
 
-  12 360 bytes of readonly  code memory
-      68 bytes of readonly  data memory
-   4 470 bytes of readwrite data memory
+  12 752 bytes of readonly  code memory
+      76 bytes of readonly  data memory
+   4 480 bytes of readwrite data memory
 
 Errors: none
 Warnings: none

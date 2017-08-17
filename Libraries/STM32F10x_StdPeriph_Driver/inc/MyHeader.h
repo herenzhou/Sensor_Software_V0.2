@@ -110,10 +110,10 @@ typedef  float 					fp32;
 #define  DS18B20_Pin GPIO_Pin_3   //初始化使用的引脚，注意更改在其他端口时需要初始化相应的端口
 #define  DQR PAin(3)		
 #define  DQW PAout(3)					    //定义DS18B20数据读写脚
-
+#define  IonLED      PBout(7) 
 
 /************条件编译宏定义**************/
-#define   IonTypedef    1       //定义颗粒传感器类型 1:Ion(离子) 2:Ird(红外)
+#define   IonTypedef    2       //定义颗粒传感器类型 1:Ion(离子) 2:Ird(红外)
 //#define   SmokeEasy             //Smoke = Ion|CO;
 #define   TemplineFuc           //是否启用感温电缆(105度短路检测)-->天津力神
 #define   CAN_TimeMul      2    //定义通信时间因子--100ms

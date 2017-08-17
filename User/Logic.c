@@ -345,18 +345,24 @@ void ChenckIon(void)
         if(StateByte.Bits.CO==1)                          
           {
             if(IonADValue >= (*(word *)IonValueadd)+200)     //CO有效时  Ion=初值+200
+              {
                 StateByte.Bits.Ion=1;
-            else{StateByte.Bits.Ion=0;}
+                IonLED=0;
+              }
+            else{StateByte.Bits.Ion=0;IonLED=1;}
           }      
         else
           {
             if(IonADValue >= (*(word *)IonValueadd)+1000)    //CO无效时  Ion=初值+300
+              {
                 StateByte.Bits.Ion=1; 
-            else{StateByte.Bits.Ion=0;}
+                IonLED=0;
+              }
+            else{StateByte.Bits.Ion=0;IonLED=1;}
           }
-      }else{StateByte.Bits.Ion=0;}
+      }else{StateByte.Bits.Ion=0;IonLED=1;}
 #endif
-  }else{StateByte.Bits.Ion=0;}
+  }else{StateByte.Bits.Ion=0;IonLED=1;}
 }
 
 
